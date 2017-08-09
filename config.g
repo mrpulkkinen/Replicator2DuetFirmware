@@ -11,8 +11,7 @@ M83 ; ...but relative extruder moves
 M555 P2 ; Set firmware compatibility to look like Marlin
 M208 X0 Y0 Z0 S1 ; Set axis minimal
 M208 X300 Y145 Z155 S0 ; Set axis maximal
-M575 P1 B5115200 S1   
-
+   
 ; Endstops
 M574 X2 Y2 Z1 S0 ; Define active low and unused microswitches
 M558 P0 X0 Y0 Z0 H5 F120 T6000 ; Set Z probe type to switch, the axes for which it is used and the probe + travel speeds
@@ -27,7 +26,7 @@ M569 P3 S1 ; Drive 3 goes forwards
 M350 X16 Y16 Z16 E16 I0 ; Configure microstepping without interpolation
 M92 X88.8 Y88.8 Z400 E101 ; Set steps per mm
 M566 X900 Y900 Z12 E120 ; Set maximum instantaneous speed changes (mm/min)
-M203 X6000 Y6000 Z180 E1200 ; Set maximum speeds (mm/min)
+M203 X6000 Y6000 Z2000 E1200 ; Set maximum speeds (mm/min)
 M201 X1000 Y1000 Z150 E1000 ; Set accelerations (mm/s^2)
 M906 X800 Y800 Z400 E800 I30 ; Set motor currents (mA) and motor idle factor in per cent
 M84 S30 ; Set idle timeout
@@ -53,18 +52,18 @@ M586 P2 S0 ; Disable Telnet
 
 ; Fans
 M106 P0 S0.3 I0 F500 H-1 ; Set fan 0 value, PWM signal inversion and frequency. Thermostatic control is turned off
-M106 P1 S1 I0 F500 H1 T45 ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
-M106 P2 S1 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P1 S0.3 I0 F500 H1 T45 ; Set fan 1 value, PWM signal inversion and frequency. Thermostatic control is turned on
+M106 P2 S0.3 I0 F500 H1 T45 ; Set fan 2 value, PWM signal inversion and frequency. Thermostatic control is turned on
 
 ; Custom settings are not configured
 ;Home my Axes
 ;Home X and Y-Axis
-G28 X Y 
+G28 X Y F2500
 ;Home Z Axis
-;G28 Z F100
-; Optional Uncommenct next line to Send Z-Axis to buttom of Machine - Leave the Las 5 MM for space when homing XY alone
-;G0 Z150 F100
+G28 Z F1100
+; Send Z-Axis to buttom of Machine - Leave the Las 5 MM for space when homing XY alone
+G0 Z150 F1100
 ;Disable All stepper Motors
 M18
-;Shutdown Partsfan after Power On Test
+;Shutdown Parts fan after Power On Test
 M107
